@@ -1,3 +1,13 @@
+[中文](https://zdoc.app/zh/jae-jae/searxng-mul-mcp) |
+[Deutsch](https://zdoc.app/de/jae-jae/searxng-mul-mcp) |
+[English](https://zdoc.app/en/jae-jae/searxng-mul-mcp) |
+[Español](https://zdoc.app/es/jae-jae/searxng-mul-mcp) |
+[français](https://zdoc.app/fr/jae-jae/searxng-mul-mcp) |
+[日本語](https://zdoc.app/ja/jae-jae/searxng-mul-mcp) |
+[한국어](https://zdoc.app/ko/jae-jae/searxng-mul-mcp) |
+[Português](https://zdoc.app/pt/jae-jae/searxng-mul-mcp) |
+[Русский](https://zdoc.app/ru/jae-jae/searxng-mul-mcp)
+
 # SearXNG MCP Server
 
 A Model Context Protocol (MCP) server for SearXNG metasearch engine integration, supporting multi-query parallel search with both stdio and HTTP transport protocols.
