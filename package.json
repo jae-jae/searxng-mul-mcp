@@ -1,0 +1,63 @@
+{
+  "name": "searxng-mul-mcp",
+  "version": "1.0.0",
+  "description": "A Model Context Protocol (MCP) server for SearXNG search engine with multi-query parallel search support",
+  "main": "build/index.js",
+  "bin": {
+    "searxng-mul-mcp": "build/index.js"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc --project .",
+    "start": "node build/index.js",
+    "dev": "ts-node src/index.ts",
+    "clean": "rm -rf build",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
+    "inspector": "npm run build && npx @modelcontextprotocol/inspector build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "searxng",
+    "search",
+    "metasearch",
+    "privacy",
+    "parallel-search"
+  ],
+  "author": "Jaeger<JaegerCode@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "build/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "express": "^4.18.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@types/yargs": "^17.0.32",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jae-jae/searxng-mul-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jae-jae/searxng-mul-mcp/issues"
+  },
+  "homepage": "https://github.com/jae-jae/searxng-mul-mcp#readme"
+}

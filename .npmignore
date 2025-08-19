@@ -1,0 +1,43 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Development files
+.github/
+docs/
+tests/
+*.test.js
+*.test.ts
+.env
+.env.*
+
+# Build artifacts
+tsconfig.json
+.eslintrc.*
+.prettierrc.*
+jest.config.*
+
+# Development dependencies
+node_modules/
+.nyc_output/
+coverage/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files (optional, keep if users might need them)
+# Dockerfile
+# docker-compose.yml
+# .dockerignore
+
+# Git files
+.git/
+.gitignore
