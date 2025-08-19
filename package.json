@@ -14,7 +14,7 @@
     "test": "jest",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
-    "inspector": "npm run build && npx @modelcontextprotocol/inspector build/index.js"
+    "inspector": "npm run build && npx @modelcontextprotocol/inspector node build/index.js"
   },
   "keywords": [
     "mcp",
