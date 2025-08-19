@@ -58,6 +58,65 @@ PORT=3000           # HTTP mode only
 DEBUG=false
 ```
 
+## Configuration
+
+### Claude Desktop Configuration
+
+Add the following configuration to your Claude Desktop `claude_desktop_config.json` file:
+
+stdio mode:
+
+```json
+{
+  "mcpServers": {
+    "searxng-mul-mcp": {
+      "command": "npx",
+      "args": ["-y", "searxng-mul-mcp"],
+      "env": {
+        "SEARXNG_URL": "https://your.searxng.com",
+        "USERNAME": "your_username",
+        "PASSWORD": "your_password"
+      }
+    }
+  }
+}
+```
+
+### SearXNG Server Setup
+
+This MCP server requires access to a SearXNG instance. You can:
+
+1. Use a public SearXNG instance (like `https://your.searxng.com`)
+2. Deploy your own SearXNG server
+3. Use a private SearXNG instance with Basic Auth
+
+### Basic Authentication
+
+If your SearXNG server requires Basic Auth:
+
+```bash
+export USERNAME=your_username
+export PASSWORD=your_password
+```
+
+### Transport Protocols
+
+#### Stdio Transport
+
+- Default mode for MCP client integration
+- Uses standard input/output for communication
+- Suitable for direct MCP client connections
+
+#### HTTP Transport
+
+- Provides StreamableHTTP JSON-RPC interface (protocol version 2025-03-26)
+- Includes health check endpoint at `/health`
+- MCP endpoint at `/mcp` for client communication
+- Supports session management with automatic cleanup
+- Full CORS support for cross-origin requests
+- Suitable for web-based integrations and modern MCP clients
+
+
 ## Installation
 
 ### From Source
@@ -101,25 +160,6 @@ docker-compose up -d
 
 The server provides a single `search` tool that accepts the following parameters:
 
-### Search Tool
-
-```json
-{
-  "name": "search",
-  "arguments": {
-    "queries": [
-      "Brother printers review",
-      "Brother printers features",
-      "Brother printers types"
-    ],
-    "engines": ["google", "bing"],
-    "categories": ["general"],
-    "safesearch": 1,
-    "language": "en"
-  }
-}
-```
-
 #### Parameters
 
 - **queries** (required): Array of search query strings to execute in parallel
@@ -128,67 +168,6 @@ The server provides a single `search` tool that accepts the following parameters
 - **safesearch** (optional): Safe search level (0=off, 1=moderate, 2=strict)
 - **language** (optional): Search language code (e.g., "en", "zh", "es")
 
-#### Response Format
-
-```json
-{
-  "searches": [
-    {
-      "query": "Brother printers review",
-      "results": [
-        {
-          "title": "Best Brother Printers 2024 Review",
-          "link": "https://example.com/review",
-          "snippet": "Comprehensive review of Brother printers..."
-        }
-      ],
-      "total_results": 150,
-      "success": true
-    }
-  ],
-  "summary": {
-    "total_queries": 3,
-    "successful_queries": 3,
-    "failed_queries": 0
-  }
-}
-```
-
-## Configuration
-
-### SearXNG Server Setup
-
-This MCP server requires access to a SearXNG instance. You can:
-
-1. Use a public SearXNG instance (like `https://your.searxng.com`)
-2. Deploy your own SearXNG server
-3. Use a private SearXNG instance with Basic Auth
-
-### Basic Authentication
-
-If your SearXNG server requires Basic Auth:
-
-```bash
-export USERNAME=your_username
-export PASSWORD=your_password
-```
-
-### Transport Protocols
-
-#### Stdio Transport
-
-- Default mode for MCP client integration
-- Uses standard input/output for communication
-- Suitable for direct MCP client connections
-
-#### HTTP Transport
-
-- Provides StreamableHTTP JSON-RPC interface (protocol version 2025-03-26)
-- Includes health check endpoint at `/health`
-- MCP endpoint at `/mcp` for client communication
-- Supports session management with automatic cleanup
-- Full CORS support for cross-origin requests
-- Suitable for web-based integrations and modern MCP clients
 
 ## Development
 
