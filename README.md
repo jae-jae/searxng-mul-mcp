@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server for SearXNG metasearch engine integration, supporting multi-query parallel search with both stdio and HTTP transport protocols.
 
+> 🌟 **Recommended**: [OllaMan](https://ollaman.com/) - Powerful Ollama AI Model Manager.
+
 ## Features
 
 - ✅ **Multi-Query Parallel Search**: Execute multiple search queries simultaneously for improved efficiency
