@@ -113,7 +113,14 @@ async function main() {
     }
     
   } catch (error) {
-    logger.error('Failed to start server', error);
+    // Display the error message clearly to the user
+    if (error instanceof Error) {
+      console.error('\n' + error.message + '\n');
+      logger.error('Failed to start server:', error.message);
+    } else {
+      console.error('\n❌ Unknown error occurred:', error, '\n');
+      logger.error('Failed to start server', error);
+    }
     process.exit(1);
   }
 }
@@ -132,6 +139,10 @@ process.on('uncaughtException', (error) => {
 
 // Start the application
 main().catch((error) => {
-  process.stderr.write(`Application startup failed: ${error}\n`);
+  if (error instanceof Error) {
+    console.error('\n' + error.message + '\n');
+  } else {
+    console.error('\n❌ Application startup failed:', error, '\n');
+  }
   process.exit(1);
 });

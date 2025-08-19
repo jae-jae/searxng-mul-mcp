@@ -30,13 +30,13 @@ A Model Context Protocol (MCP) server for SearXNG metasearch engine integration,
 #### Stdio Mode (Default)
 
 ```bash
-npx -y searxng-mul-mcp
+SEARXNG_URL=https://your.searxng.com npx -y searxng-mul-mcp
 ```
 
 #### HTTP Mode
 
 ```bash
-npx -y searxng-mul-mcp --transport=http --host=0.0.0.0 --port=3000
+SEARXNG_URL=https://your.searxng.com npx -y searxng-mul-mcp --transport=http --host=0.0.0.0 --port=3000
 ```
 
 ### Environment Variables
