@@ -238,7 +238,31 @@ export class HttpTransport implements Transport {
 
       this.logger.info('Stopping HTTP transport...');
       
+      // Close all active MCP sessions first
+      const sessionIds = Object.keys(this.transports);
+      this.logger.debug(`Closing ${sessionIds.length} active sessions`);
+      
+      for (const sessionId of sessionIds) {
+        try {
+          const transport = this.transports[sessionId];
+          if (transport && typeof transport.close === 'function') {
+            transport.close();
+          }
+          delete this.transports[sessionId];
+          this.logger.debug(`Session closed: ${sessionId}`);
+        } catch (error) {
+          this.logger.warn(`Error closing session ${sessionId}:`, error);
+        }
+      }
+      
+      // Force close all connections after a short delay
+      const forceCloseTimeout = setTimeout(() => {
+        this.logger.warn('Force closing HTTP server connections');
+        this.httpServer.closeAllConnections?.();
+      }, 1000);
+      
       this.httpServer.close((error: any) => {
+        clearTimeout(forceCloseTimeout);
         if (error) {
           this.logger.error('Error stopping HTTP server', error);
           reject(error);
@@ -248,6 +272,13 @@ export class HttpTransport implements Transport {
           resolve();
         }
       });
+      
+      // Fallback: force close connections immediately if closeAllConnections is available
+      if (this.httpServer.closeAllConnections) {
+        setTimeout(() => {
+          this.httpServer.closeAllConnections();
+        }, 500);
+      }
     });
   }
 
