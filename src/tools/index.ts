@@ -39,7 +39,7 @@ export const searchTool: Tool = {
       },
       language: {
         type: "string",
-        description: "Search language code (optional). Examples: en, zh, es, fr, de",
+        description: "Search language code (optional). Only supports single language code, not comma-separated multiple codes. Examples: en, zh, es, fr, de",
       },
     },
     required: ["queries"],

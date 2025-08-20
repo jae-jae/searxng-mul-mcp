@@ -3,6 +3,43 @@
  * Provides interface to SearXNG search API with Basic Auth support
  */
 
+/**
+ * Valid language codes supported by SearXNG
+ * Based on official SearXNG sxng_locales.py
+ */
+const VALID_LANGUAGE_CODES = new Set([
+  // Basic language codes
+  'af', 'ar', 'be', 'bg', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'es', 'et', 'eu', 'fa', 'fi',
+  'fr', 'ga', 'gd', 'gl', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kn', 'ko', 'lt', 'lv',
+  'ml', 'mr', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv', 'ta', 'te', 'th', 'tr',
+  'uk', 'ur', 'vi', 'zh',
+  // Language codes with regions
+  'ar-sa', 'bg-bg', 'cs-cz', 'da-dk', 'de-at', 'de-be', 'de-ch', 'de-de', 'el-gr', 'en-au', 'en-ca',
+  'en-gb', 'en-ie', 'en-in', 'en-nz', 'en-ph', 'en-pk', 'en-sg', 'en-us', 'en-za', 'es-ar', 'es-cl',
+  'es-co', 'es-es', 'es-mx', 'es-pe', 'et-ee', 'fi-fi', 'fr-be', 'fr-ca', 'fr-ch', 'fr-fr', 'hu-hu',
+  'id-id', 'it-ch', 'it-it', 'ja-jp', 'ko-kr', 'nb-no', 'nl-be', 'nl-nl', 'pl-pl', 'pt-br', 'pt-pt',
+  'ro-ro', 'ru-ru', 'sv-se', 'th-th', 'tr-tr', 'vi-vn', 'zh-cn', 'zh-hk', 'zh-tw'
+]);
+
+/**
+ * Validates if a language code is supported by SearXNG
+ */
+function isValidLanguageCode(language: string): boolean {
+  if (!language || typeof language !== 'string') {
+    return false;
+  }
+  
+  // Remove whitespace and convert to lowercase
+  const cleanLanguage = language.trim().toLowerCase();
+  
+  // Check if it's a valid language code format (2-3 letters, optionally followed by dash and 2 letters)
+  if (!/^[a-z]{2,3}(-[a-z]{2})?$/.test(cleanLanguage)) {
+    return false;
+  }
+  
+  return VALID_LANGUAGE_CODES.has(cleanLanguage);
+}
+
 export interface SearchOptions {
   /** List of search engines to use (optional) */
   engines?: string[];
@@ -201,8 +238,8 @@ export class SearXNGApiClient {
     if (options?.safesearch !== undefined) {
       searchParams.append("safesearch", options.safesearch.toString());
     }
-    if (options?.language) {
-      searchParams.append("language", options.language);
+    if (options?.language && isValidLanguageCode(options.language)) {
+      searchParams.append("language", options.language.trim().toLowerCase());
     }
 
     const url = `${this.baseUrl}/search?${searchParams.toString()}`;

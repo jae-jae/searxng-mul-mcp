@@ -1,6 +1,6 @@
 {
   "name": "searxng-mul-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Model Context Protocol (MCP) server for SearXNG search engine with multi-query parallel search support",
   "main": "build/index.js",
   "bin": {
