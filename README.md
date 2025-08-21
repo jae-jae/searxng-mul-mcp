@@ -144,10 +144,6 @@ services:
       # - PASSWORD=your_password
     ports:
       - "3000:3000"
-    environment:
-      - TRANSPORT=http
-      - HOST=0.0.0.0
-      - PORT=3000
 ```
 
 Run with:

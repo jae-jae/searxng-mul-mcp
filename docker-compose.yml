@@ -9,14 +9,6 @@ services:
       # Optional: Basic Auth credentials
       # - USERNAME=your_username
       # - PASSWORD=your_password
-
-      # Transport configuration
-      - TRANSPORT=http
-      - HOST=0.0.0.0
-      - PORT=3000
-
-      # Debug mode
-      - DEBUG=false
     ports:
       - "3000:3000"
     restart: unless-stopped

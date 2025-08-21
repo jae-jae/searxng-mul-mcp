@@ -51,5 +51,5 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "fetch('http://localhost:3000/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))" || exit 1
 
-# Use dumb-init to handle signals properly and set default command
-ENTRYPOINT ["dumb-init", "--", "node", "build/index.js"]
+# Use dumb-init to handle signals properly and set default command with HTTP transport
+ENTRYPOINT ["dumb-init", "--", "node", "build/index.js", "--transport=http", "--host=0.0.0.0", "--port=3000"]
