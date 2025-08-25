@@ -8,7 +8,7 @@
 [Português](https://zdoc.app/pt/jae-jae/searxng-mul-mcp) |
 [Русский](https://zdoc.app/ru/jae-jae/searxng-mul-mcp)
 
-# SearXNG MCP Server
+# SearXNG Mul MCP
 
 A Model Context Protocol (MCP) server for SearXNG metasearch engine integration, supporting multi-query parallel search with both stdio and HTTP transport protocols.
 
@@ -116,7 +116,6 @@ export PASSWORD=your_password
 - Full CORS support for cross-origin requests
 - Suitable for web-based integrations and modern MCP clients
 
-
 ## Installation
 
 ### From Source
@@ -163,7 +162,6 @@ The server provides a single `search` tool that accepts the following parameters
 - **categories** (optional): Search categories to filter results (e.g., "general", "images", "news")
 - **safesearch** (optional): Safe search level (0=off, 1=moderate, 2=strict)
 - **language** (optional): Search language code (e.g., "en", "zh", "es")
-
 
 ## Development
 
